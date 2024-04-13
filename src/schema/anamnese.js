@@ -205,6 +205,13 @@ export const AnamneseSchema = new EntitySchema({
       target: 'Podologo',
       joinColumn: true,
       inverseSide: 'Anamnese'
+    },
+    agendamento: {
+      type: 'one-to-one',
+      createForeignKeyConstraints: true,
+      target: 'Agendamento',
+      joinColumn: true,
+      inverseSide: 'Anamnese'
     }
   }
 })
