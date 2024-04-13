@@ -21,7 +21,7 @@ export class CadastroPodologo {
             const result = await podologoRepository.save(podologoDto)
             res.status(201).json(result)
         } catch (error) {
-            res.status(400).json({message: error.message})
+            res.status(500).json({message: error.message})
         }
     }
 }
