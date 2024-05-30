@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import { AppDataSource } from '../app-data-source.js'
 import { PodologoSchema } from '../schema/podologo.js'
 export class CadastroPodologo {

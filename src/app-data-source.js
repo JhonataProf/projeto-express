@@ -8,11 +8,11 @@ import { PodologoSchema } from './schema/podologo.js'
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
-    host: '192.168.23.9',
+    host: 'pi-senac-db.mysql.database.azure.com',
     port: 3306,
-    username: 'jhonatasobral',
-    password: 'Jhon@t@87',
-    database: 'sistema_podologia_v2',
+    username: 'professor',
+    password: 'Senac123',
+    database: 'sistema_podologia',
     synchronize: true,
     metadataTableName: 'meta_data_custom',
     relationLoadStrategy: 'join',
@@ -20,5 +20,6 @@ export const AppDataSource = new DataSource({
     entities: [AgendamentoSchema, AnamneseSchema, PacienteSchema, PodologoSchema],
     migrations: [],
     subscribers: [],
-    namingStrategy: new SnakeNamingStrategy()
+    namingStrategy: new SnakeNamingStrategy(),
+    ssl: { rejectUnauthorized: false }
   })
