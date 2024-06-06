@@ -6,6 +6,7 @@ export class CadastroPodologo {
         try {
             const body = req.body
             const salt = 12
+            console.log(body)
             const hashPassword = await bcrypt.hash(body.senha, salt)
             const podologoDto ={
                 senha: hashPassword,
