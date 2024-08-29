@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "PI Senac turma 171",
+      "script": "./src/app.js",
+      "node_args": "-r dotenv/config"
+    }
+  ]
+}

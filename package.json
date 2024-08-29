@@ -5,14 +5,20 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start:dev": "node --env-file=.env ./src/app.js",
-    "start": "node ./src/app.js"
+    "start:dev": "node -r dotenv/config ./src/app.js",
+    "start:prod": "pm2 start pm2.config.json --watch",
+    "start": "node ./src/app.js",
+    "reload": "pm2 reload pm2.config.json",
+    "stop": "pm2 stop pm2.config.json",
+    "end": "pm2 delete pm2.config.json"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.4",
+    "pm2": "^5.4.2",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.20",
     "typeorm-naming-strategies": "^4.1.0"
