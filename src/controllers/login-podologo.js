@@ -2,10 +2,11 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { AppDataSource } from "../app-data-source.js"
 import { PodologoSchema } from "../schema/podologo.js"
+import { ok, serverError, unauthorizer } from '../helper/index.js'
 
 export class LoginPodologoController {
 
-    async login(req, res) {
+    async handle(req) {
         try {
             const body = req.body
             const podologoRepository = AppDataSource.getRepository(PodologoSchema)
@@ -21,12 +22,12 @@ export class LoginPodologoController {
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),
                     data: {nome: podologo.nomeCompleto, email: podologo.email}
                   }, 'secret')
-                return res.status(200).json({message: 'usuário logado', token: bearer})
+                return ok({message: 'usuário logado', token: bearer})
             } else {
-                return res.status(401).json({message: 'não foi possivel realizar login'})
+                return unauthorizer({message: 'não foi possivel realizar login'})
             }
         } catch (error) {
-            res.status(500).json({message: error.message})
+            return serverError(error.message)
         }
     }
 }

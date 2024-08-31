@@ -13,15 +13,11 @@ import { ListaPaciente } from "./controllers/lista-paciente.js"
 import { ListaPodologo } from "./controllers/lista-podologo.js"
 import {Router} from 'express'
 import { LoginPodologoController } from "./controllers/login-podologo.js"
+import { adaptRoute } from './adapter/express-router.js'
 
 export const router = () => {
     const router = Router()
-
-    router.post('/login', (req, res) => {
-        const login = new LoginPodologoController()
-        return login.login(req, res)
-    })
-
+    router.post('/login', adaptRoute(new LoginPodologoController()))
     const auth = (req, res, next) => {
         try {
             if (!req.headers['authorization']) {
